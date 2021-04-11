@@ -63,7 +63,7 @@ use Predis\Connection\ConnectionInterface;
  * @method mixed       psetex($key, $milliseconds, $value)
  * @method mixed       set($key, $value, $expireResolution = null, $expireTTL = null, $flag = null)
  * @method int         setbit($key, $offset, $value)
- * @method int         setex($key, $seconds, $value)
+ * @method int         setex(string $key, int $seconds, string $value)
  * @method int         setnx($key, $value)
  * @method int         setrange($key, $offset, $value)
  * @method int         strlen($key)

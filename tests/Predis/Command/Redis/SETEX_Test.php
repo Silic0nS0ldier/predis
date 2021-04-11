@@ -119,4 +119,21 @@ class SETEX_Test extends PredisCommandTestCase
 
         $this->getClient()->setex('foo', -10, 'bar');
     }
+
+    public function testCasting(): void
+    {
+        $redis = $this->getClient();
+
+        // string
+        $redis->setex('string', 20, 'foobar');
+        $this->assertSame('foobar', $redis->get('string'));
+
+        // int casts to string
+        $redis->setex('int', 20, 999);
+        $this->assertSame('999', $redis->get('int'));
+        // int with incr returns as int
+        $this->assertSame(1000, $redis->incr('int'));
+        // int after incr still string
+        $this->assertSame('1000', $redis->get('int'));
+    }
 }
